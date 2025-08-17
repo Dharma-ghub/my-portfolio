@@ -3,699 +3,833 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Dharma's Cybersecurity Portfolio</title>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
+<title>Dharma Tejaswini Janga | Aspiring SOC Analyst</title>
 <style>
-  .blog-images {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    margin-top: 1rem;
-  }
-
-  .blog-images img {
-    width: 48%;
-    border-radius: 10px;
-    border: 2px solid var(--mustard);
-  }
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Open+Sans&display=swap');
-
   :root {
-    --mustard: #E1AD01;
-    --brown: #4A3F35;
-    --offwhite: #F9F7F1;
-    --black: #000000;
-    --dark-bg: #1B1B1B;
-    --text-light: #DDDCDC;
+    --bg-gradient-start: #000000;
+    --bg-gradient-end: #000000;
+    --text-color: #e0e0e0; /* light gray */
+    --header-bg: #121212; /* very dark gray */
+    --header-text: #00c2cb; /* bright teal */
+    --link-color: #00c2cb;
+    --link-hover-color: #66e0e6;
+    --card-bg: #111111; /* dark card background */
+    --card-shadow-color: rgba(0, 194, 203, 0.8);
   }
 
   /* Reset */
   * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
   }
-  body {
-    margin: 0;
-    font-family: 'Open Sans', sans-serif;
-    background: var(--offwhite);
-    color: var(--brown);
-    line-height: 1.6;
+
+  body, p, li {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.25rem;
+    color: var(--text-color);
   }
+  body {
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #000 !important;
+    background-image: none;
+    position: relative;
+    overflow-x: hidden;
+  }
+#contact {
+  position: relative;
+  overflow: hidden;
+}
+
+#contactCanvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.contact-items-container {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  align-items: center;
+flex-wrap: wrap;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+  #binaryCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* behind all content */
+    pointer-events: none;
+    background: transparent;
+    opacity: 0.3;
+  }
+
   a {
-    color: var(--mustard);
+    color: var(--link-color);
     text-decoration: none;
-    font-weight: 700;
+    transition: color 0.3s ease;
   }
   a:hover {
-    text-decoration: underline;
+    color: var(--link-hover-color);
   }
 
-  /* Full screen container with padding */
-  .container {
-    width: 100vw;
-    max-width: 100vw;
-    padding: 2rem 4rem;
-    margin: 0 auto 3rem;
-  }
-
-  /* Header */
   header {
-    text-align: center;
-    padding: 2rem 1rem 3rem;
-    background: var(--dark-bg);
-    color: var(--text-light);
-    border-radius: 10px;
-    position: relative;
-  }
-  header img.profile-pic {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid var(--mustard);
-    margin-bottom: 1rem;
-    box-shadow: 0 0 10px var(--mustard);
-  }
-  header h1 {
-    margin: 0;
-    font-size: 4.5rem;
-    font-weight: 900;
-    color: var(--mustard);
-  }
-  header p {
-    font-size: 2rem;
-    margin-top: 0.5rem;
-    color: var(--mustard);
-    font-weight: 700;
-    font-family: 'Roboto Mono', monospace;
-    letter-spacing: 1.2px;
-  }
-
-  /* Two column layout */
-  .main-content {
     display: flex;
-    gap: 3rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .left-column {
-    flex: 3;
-  }
-  .right-column {
-    flex: 1.2;
-    background: transparent;
-    color: var(--brown);
-    padding: 2rem;
-    border-radius: 10px;
-    height: fit-content;
-    margin-top: 3rem;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 3rem;
+    background: var(--header-bg);
+    border-radius: 15px;
+    box-shadow: 0 0 30px var(--header-text);
+    gap: 1.5rem;
+    text-align: center;
+    max-width: 2800px;
+    width: 90%;
+    margin: 2rem auto;
+    color: var(--header-text);
   }
 
-  /* Logos container */
-  .edu-logos {
+  .resume-link {
+    color: var(--header-text);
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .resume-link:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: -1.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    /* background: transparent; */ /* See below: background removed */
+    background: transparent;
+    color: var(--header-text);
+    font-family: 'Times New Roman', serif;
+    /* padding: 0; */ /* See below: padding removed */
+    padding: 0;
+    border-radius: 0;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 1;
+    text-shadow: 0 0 3px rgba(0, 194, 203, 0.8);
+    transition: opacity 0.3s ease;
+    z-index: 10;
+  }
+
+  .resume-link::after {
+    content: '';
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 0 20px var(--header-text), 0 0 40px var(--header-text);
+    flex-shrink: 0;
+  }
+
+  header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    font-size: 5rem;
+    letter-spacing: 0.2em;
+    color: var(--header-text);
+    text-decoration-color: var(--header-text);
+    text-underline-offset: 6px;
+    text-decoration-thickness: 3px;
+    text-shadow:
+      0 0 1px #008b91,
+      0 0 2px #008b91,
+      0 0 3px #00696f;
+    margin: 0;
+  }
+
+  h1, h2, .card h3 {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.15em;
+    color: var(--link-color);
+    text-shadow:
+      0 0 1px #00797f,
+      0 0 2px #00797f,
+      0 0 4px #00696f;
+  }
+
+  .logo-container {
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  .edu-logos img {
-    width: 120px;
-    height: 120px;
-    border-radius: 6px;
-    border: 2px solid var(--mustard);
-    padding: 4px;
-    background: var(--offwhite);
-    box-shadow: 0 0 8px var(--mustard);
-    object-fit: contain;
+    gap: 2rem;
+    align-items: center;
   }
 
-  /* Education list */
-  #education ul,
-  #research-experience ul {
+  #cyber-text {
+    font-size: 2rem;
+    font-style: italic;
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin: 0;
+    color: var(--header-text);
+  }
+
+  .edu-logo {
+    width: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    padding: 8px;
+    height: 90px;
+  }
+
+  .edu-logo.srm {
+    height: 100px;
+  }
+
+  main {
+    max-width: 1100px; /* limit width for content */
+    width: 100%;
+    margin: 3rem auto; /* center horizontally with vertical margin */
+    padding: 0 2rem; /* side padding for breathing room */
+    flex-grow: 1;
+  }
+
+  section {
+    margin-bottom: 4rem;
+  }
+
+  section h2 {
+    font-weight: 700;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--link-color);
+    padding-bottom: 0.4rem;
+    text-align: center;
+  }
+
+  p, li {
+    font-size: 1.3rem; /* increase paragraph and list font size */
+    color: var(--text-color);
+  }
+
+  ul {
     list-style: none;
     padding-left: 0;
   }
-  #education ul li,
-  #research-experience ul li {
-    margin-bottom: 1.4rem;
-    font-weight: 700;
-    font-size: 1.2rem;
-  }
-  #education ul li span,
-  #research-experience ul li span {
-    font-weight: 400;
-    color: var(--mustard);
+
+  li {
+    margin-bottom: 0.7rem;
   }
 
-  /* About Me paragraphs */
+  .projects, .blogs, .writeups {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(280px,1fr));
+    gap: 1.5rem;
+  }
+
+  .card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.2rem 1rem;
+    box-shadow: 0 0 10px var(--card-shadow-color);
+    color: var(--text-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px var(--card-shadow-color);
+  }
+
+  .card h3 {
+    margin-bottom: 0.6rem;
+    font-size: 1.6rem;
+  }
+
+  .card p {
+    font-size: 1.15rem;
+    color: var(--text-color);
+  }
+
+  .card a {
+    display: inline-block;
+    margin-top: 0.7rem;
+    color: var(--link-color);
+  }
+
+  .card a:hover {
+    color: var(--link-hover-color);
+  }
+
+  #about {
+    padding: 0 1rem;
+  }
+
   #about p {
-    max-width: 700px;
-    margin-bottom: 1rem;
-    font-weight: 600;
+    padding: 0 1rem;
+    max-width: 900px;
+    margin: 0 auto;
+    color: var(--text-color);
+    font-size: 1.25rem;
+    line-height: 1.7;
   }
 
-  /* Timeline container */
-  .timeline {
-    position: relative;
-    padding-left: 30px;
-    margin-left: 15px;
-    border-left: 3px solid var(--mustard);
-  }
-
-  /* Shaky animation for dots */
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(2px); }
-    50% { transform: translateX(-2px); }
-    75% { transform: translateX(2px); }
-  }
-
-  /* Timeline item */
-  .timeline-item {
-    position: relative;
-    margin-bottom: 2.5rem;
-  }
-  .timeline-item::before {
-    content: "";
-    position: absolute;
-    left: -14px;
-    top: 4px;
-    width: 14px;
-    height: 14px;
-    background: var(--mustard);
-    border: 3px solid var(--brown);
-    border-radius: 50%;
-    animation: shake 3s ease-in-out infinite;
-    box-shadow: 0 0 8px var(--mustard);
-  }
-
-  .timeline-item p {
-    margin: 0;
-    padding-left: 10px;
-    font-weight: 700;  /* Bold timeline text */
-  }
-
-  /* Contact */
-  #contact p {
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
-    font-weight: 700;
-  }
-  #contact h2 {
+  footer {
     text-align: center;
-  }
-
-  /* Section titles font */
-  section h2 {
-    font-family: 'Roboto Mono', monospace;
-    text-decoration: underline;
-    margin-bottom: 0.5rem;  /* Reduce bottom spacing */
-    margin-top: 1rem;      /* Reduce top spacing */
-  }
-
-  /* Style icons in h2 headings */
-  h2 i {
-    color: var(--mustard);
-    margin-right: 8px;
-    vertical-align: middle;
-  }
-
-  /* Divider style */
-  .divider {
-    border: none;
-    height: 2px;
-    background-color: var(--mustard);
-    margin: 2rem 0;
-    border-radius: 3px;
-  }
-
-  /* Boxed section styling for Projects, Work Experience, and Certifications */
-  .boxed-section {
-    background: transparent;
-    color: var(--brown); /* ensure text color is legible */
-    padding: 2rem;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    border: 2px solid var(--mustard); /* mustard border */
-  }
-
-  /* Footer boxed-section styling */
-  footer.boxed-section {
-    background: black;
-    color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    border: 2px solid var(--mustard);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 2rem;
-  }
-  footer.boxed-section a {
-    color: var(--mustard);
-  }
-  footer.boxed-section i {
-    color: var(--mustard);
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .container {
-      padding: 1rem 2rem;
-    }
-    header h1 {
-      font-size: 3rem;
-    }
-    section h2 {
-      font-size: 1.8rem;
-      text-decoration: underline;
-    }
-    header img.profile-pic {
-      width: 120px;
-      height: 120px;
-    }
-    .edu-logos img {
-      width: 40px;
-      height: 40px;
-    }
+    padding: 2rem 1rem;
+    background: var(--header-bg);
+    color: #777;
+    font-size: 0.9rem;
   }
 
   @media (max-width: 600px) {
-    .container {
-      padding: 1rem;
-    }
     header h1 {
-      font-size: 2.2rem;
+      font-size: 2rem;
     }
-    section h2 {
-      font-size: 1.5rem;
-      text-decoration: underline;
-    }
-    header img.profile-pic {
-      width: 100px;
-      height: 100px;
-    }
-    .edu-logos img {
-      width: 35px;
-      height: 35px;
+    main {
+      margin: 2rem 1rem;
     }
   }
-
-  /* Make Research Experience description text white */
-  #research-experience .content-collapsible {
-    color: white;
-  }
-
-  #research-experience .content-collapsible ul {
-    color: white;
-    list-style-position: inside;
-    font-size: 0.85rem;
-  }
-
-  /* Blogs section timeline customization */
-  #blogs .timeline {
-    border-left: none;  /* Remove the golden line */
-  }
-
-  #blogs .timeline-item {
-    position: static;  /* Disable dot positioning */
-    border-radius: 0;  /* Square corners */
-  }
-
-  #blogs .timeline-item::before {
-    content: none;  /* Remove the dot */
-  }
-
-  /* Certifications and Skills section font consistency */
-  #certifications, #skills {
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 700;
-  }
-
-  #certifications .timeline-item p,
-  #skills .timeline-item p {
-    font-family: 'Roboto Mono', monospace;
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-
-  /* Fade and slide up animation for boxed sections */
-  @keyframes fadeSlideUp {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  .boxed-section {
-    animation-name: fadeSlideUp;
-    animation-duration: 0.8s;
-    animation-fill-mode: forwards;
+  section {
     opacity: 0;
-    animation-timing-function: ease-out;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
-  /* Stagger animation delays for boxed sections */
-  .left-column .boxed-section:nth-child(1) { animation-delay: 0.1s; }
-  .left-column .boxed-section:nth-child(2) { animation-delay: 0.3s; }
-  .left-column .boxed-section:nth-child(3) { animation-delay: 0.5s; }
-  .left-column .boxed-section:nth-child(4) { animation-delay: 0.7s; }
-  .left-column .boxed-section:nth-child(5) { animation-delay: 0.9s; }
-
-  /* Right column boxed sections */
-  .right-column section {
-    animation-name: fadeSlideUp;
-    animation-duration: 0.8s;
-    animation-fill-mode: forwards;
-    opacity: 0;
-    animation-timing-function: ease-out;
-    animation-delay: 0.2s;
-  }
-
-  /* Timeline item hover effect */
-  .timeline-item:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 15px var(--mustard);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border-radius: 10px;
-  }
-
-  /* Enhanced collapsible arrow animation */
-  .collapsible:after {
-    content: ' ▼';
-    font-size: 1rem;
-    color: var(--mustard);
-    transition: transform 0.3s ease, color 0.3s ease;
-  }
-  .collapsible.active:after {
-    transform: rotate(-180deg);
-    color: var(--brown);
-  }
-
-  /* Smooth collapsible content transition */
-  .content-collapsible {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease, opacity 0.4s ease;
-    opacity: 0;
-    display: block; /* keep block to avoid layout jumps */
-    padding-left: 10px;
-    margin-top: 0.5rem;
-    font-weight: 400;
-    background-color: transparent;
-    color: var(--brown);
-    border: 2px solid var(--mustard);
-    border-radius: 5px;
-    padding: 10px;
-  }
-  .content-collapsible.visible {
-    max-height: 500px; /* large enough for content */
+  section.visible {
     opacity: 1;
+    transform: translateY(0);
   }
-</style>
-</head>
-<body>
 
-<div class="container">
-  <header>
-    <!-- Replace src with your actual picture path or URL -->
-    <img src="image.JPG" alt="Dharma Profile Picture" class="profile-pic" />
-    <div class="edu-logos">
-      <img src="UGA.png" alt="University of Georgia Logo" />
-      <img src="SRM.png" alt="SRM University"/>
-    </div>
-    <h1>Dharma Tejaswini Janga</h1>
-    <p>Graduate Student at UGA | Cybersecurity Enthusiast</p>
-  </header>
+  /* New styles for featured certification card */
+  .featured-cert {
+    max-width: 400px;
+    margin: 0 auto 2rem auto;
+    padding: 1.5rem 2rem;
+    border-radius: 15px;
+    box-shadow:
+      0 0 8px var(--link-color),
+      0 0 20px var(--link-color),
+      0 0 30px var(--link-color);
+    text-align: center;
+    font-size: 1.4rem;
+    background: var(--card-bg);
+    color: var(--link-color);
+  }
 
-  <div class="main-content">
-    <div class="left-column">
-      <section id="about">
-        <h2>About Me</h2>
-        <p>Hello! My name is Dharma, and I am a graduate student pursuing a Master’s in Cybersecurity at the University of Georgia. My journey into this field began when I witnessed firsthand the impact of cyber incidents and realized the critical need for greater cybersecurity awareness. The vast research opportunities and constant advancements in AI and technology further inspired my decision to enter this dynamic industry.</p>
-        <p>In my free time, I focus on expanding my skills by pursuing certifications and keeping up with the latest trends and developments in cybersecurity. Outside of my academic pursuits, I enjoy cooking, exploring trails, running, and spending time with friends and family.</p>
-      </section>
+  .featured-cert .cert-logo {
+    max-height: 100px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+  }
 
-      <div class="boxed-section">
-        <section id="work-experience">
-          <h2><i class="fas fa-briefcase"></i> Work Experience</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <p>
-                <button class="collapsible"><b>UGA CyberDawgs Summer Camp - Team Lead and Instructor (June 2025)</b></button>
-              </p>
-              <div class="content-collapsible">
-                <ul style="font-weight:400; margin-top:0.5rem; padding-left: 20px;">
-                  <li>Led a team of cybersecurity instructors in teaching high school students about cybersecurity fundamentals.</li>
-                  <li>Organized Capture the Flag (CTF) challenges, hands-on labs, and interactive activities.</li>
-                  <li>Mentored students on real-world cybersecurity scenarios and best practices.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <p>
-                <button class="collapsible"><b>Cyberarch - Part-time Intern (March 2025 – Present)</b></button>
-              </p>
-              <div class="content-collapsible">
-                <ul style="font-weight:400; margin-top:0.5rem; padding-left: 20px;">
-                  <li>Assisted organizations in Georgia with risk assessments and cybersecurity consultations.</li>
-                  <li>Helped clients identify and mitigate potential vulnerabilities.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <p>
-                <button class="collapsible"><b>SATRA Services and Solutions Private Limited - App Development Intern (June 2022 – August 2022)</b></button>
-              </p>
-              <div class="content-collapsible">
-                <ul style="font-weight:400; margin-top:0.5rem; padding-left: 20px;">
-                  <li>Applied SDLC methodologies for process optimization.</li>
-                  <li>Developed reports using SQL Server Reporting Services (SSRS).</li>
-                  <li>Created interactive mobile app prototypes using Figma with UI/UX best practices.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
+  .other-certs-title {
+    text-align: center;
+    font-size: 1.6rem;
+    color: var(--link-color);
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-family: 'Orbitron', sans-serif;
+    text-shadow:
+      0 0 1px #00797f,
+      0 0 2px #00797f,
+      0 0 4px #00696f;
+  }
 
-      <div class="boxed-section">
-        <section id="certifications">
-          <h2><i class="fas fa-certificate"></i> Certifications</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <p>Google Cybersecurity Certificate, Google | 2024</p>
-            </div>
-            <div class="timeline-item">
-              <p>Cyber Security – Digital Forensics and Cyber Law, MSME | 2023</p>
-            </div>
-            <div class="timeline-item">
-              <p>Penetration Testing using C++, EC-Council | 2022</p>
-            </div>
-            <div class="timeline-item">
-              <p>Python,Problem Solving (Intermediate), HackerRank | 2021</p>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <div class="boxed-section">
-        <section id="skills">
-          <h2><i class="fas fa-tools"></i> Skills</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <p>Programming Languages: C, C++, Python, Java, HTML, CSS, JavaScript</p>
-            </div>
-            <div class="timeline-item">
-              <p>Cybersecurity: Vulnerability Management, Penetration Testing, Intrusion Detection, SQL Injection Prevention, Incident Response.</p>
-            </div>
-            <div class="timeline-item">
-              <p>Database Management: MySQL, SQL, Database security</p>
-            </div>
-            <div class="timeline-item">
-              <p>Security Tools: Wireshark, Nmap, GDB, SIEM Tools, Splunk</p>
-            </div>
-            <div class="timeline-item">
-              <p>Software: Microsoft 365</p>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <div class="boxed-section">
-        <section id="projects">
-          <h2><i class="fas fa-lightbulb"></i> Projects</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <p>
-                <button class="collapsible"><b>Secure Transaction System (June 2023)</b></button>
-              </p>
-              <div class="content-collapsible">
-                <ul style="font-weight:400; margin-top:0.5rem; padding-left: 20px;">
-                  <li>Developed a blockchain-based transaction system using Solidity and Ethereum to secure transactions against unauthorized access.</li>
-                  <li>Used Solidity to design and develop smart contracts that run on Ethereum.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <p>
-                <button class="collapsible"><b>SQL Injection (August 2022)</b></button>
-              </p>
-              <div class="content-collapsible">
-                <ul style="font-weight:400; margin-top:0.5rem; padding-left: 20px;">
-                  <li>Built a React-based website to demonstrate SQL injection vulnerabilities.</li>
-                  <li>Implemented countermeasures like Parameterized Queries and Stored Procedures to prevent SQL injection attacks.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-    <!-- Blogs section moved from right-column to left-column, after Projects -->
-    <div class="boxed-section">
-      <section id="blogs">
-        <h2><i class="fas fa-blog"></i> Blogs</h2>
-        <div class="timeline">
-          <div class="timeline-item" style="background-color: black; color: white; padding: 1rem; border-radius: 10px; animation: none;">
-            <p style="font-size: 1.3rem; font-weight: 900; margin-bottom: 0.5rem;">Road trip to the Georgia Cyber Center - Augusta on April 3, 2025</p>
-            <p>Me and my team from Cyberarch had the incredible opportunity to visit the Georgia Cyber Center in Augusta. We were warmly welcomed by the staff and had a chance to observe their day-to-day operations, from the Security Operations Center (SOC) to the secured digital forensics team. They graciously took the time to guide us through the Georgia Cyber Range, where red team and blue team exercises, CTF events, and specialized trainings are conducted. We also toured their innovative Garage, where groundbreaking ideas are nurtured, and attended a briefing on the integration of artificial intelligence in manufacturing. It was truly an inspiring experience that highlighted the cutting-edge work being done at the Center.</p>
-            <p>I thank Georgia Cyber Innovation and Training Center and Cyberarch for this opportunity😄.</p>
-            <div class="blog-images">
-              <img src="b1.heic" alt="Cyber Center Image 1" />
-              <img src="blog2.jpeg" alt="Cyber Center Image 2" />
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    </div>
-
-    <aside class="right-column">
-      <div class="boxed-section" style="background: black; color: white;">
-        <section id="education">
-          <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-          <ul>
-            <li>Bachelor’s: <span>SRM University, Andhra Pradesh, India — GPA: 9.03/10</span></li>
-            <li>Master’s: <span>University of Georgia, Athens, GA — GPA: 3.7/4</span></li>
-          </ul>
-        </section>
-      </div>
-
-      <div class="boxed-section" style="margin-top: 2rem; background: black; color: white;">
-        <section id="research-experience" style="font-size: 0.9rem;">
-          <h2><i class="fas fa-book"></i> Research Experience</h2>
-          <div class="timeline">
-            <div class="timeline-item">
-              <p>
-                <button class="collapsible"><b>ML-IDS: Machine Learning Intrusion Detection using Explainable AI (XAI) (January 2024 - June 2024)</b></button>
-              </p>
-              <div class="content-collapsible">
-                <ul style="font-weight:400; margin-top:0.5rem; padding-left: 20px; font-size: 0.2rem;">
-                  <li>Built a machine learning-based intrusion detection system on KDD data.</li>
-                  <li>Used SHAP and LIME for model explainability.</li>
-                </ul>
-              </div>
-            </div>
-            <div class="timeline-item">
-              <p>
-                <button class="collapsible"><b>Intrusion Detection on Ton-IoT Dataset (August 2022 - December 2022)</b></button>
-              </p>
-              <div class="content-collapsible">
-                <ul style="font-weight:400; margin-top:0.5rem; padding-left: 20px;">
-                  <li>Optimized model hyperparameters on TON-IoT data.</li>
-                  <li>Used XGBoost and Random Forest for intrusion detection.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </aside>
-  </div>
-</div>
-
-<footer class="boxed-section" style="margin-top: 3rem; width: 100%; margin-left: auto; margin-right: auto;">
-  <section id="contact">
-    <h2 style="text-align: center;">Contact</h2>
-    <div style="display: flex; justify-content: space-between; align-items: center; text-align: center;">
-      <div style="flex: 1; text-align: left;">
-        <a href="https://linkedin.com/in/dharma-janga" target="_blank" rel="noopener">
-          <i class="fab fa-linkedin fa-3x" style="color: var(--mustard);"></i>
-        </a>
-      </div>
-      <div style="flex: 1; text-align: center;">
-        <a href="mailto:dharmatejaswinijanga@gmail.com">
-          <i class="fas fa-envelope fa-3x" style="color: var(--mustard);"></i>
-        </a>
-      </div>
-      <div style="flex: 1; text-align: right;">
-        <a href="https://github.com/dharma-ghub" target="_blank" rel="noopener">
-          <i class="fab fa-github fa-3x" style="color: var(--mustard);"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-</footer>
-
-</body>
-</html>
-  <!-- /*Footer boxed-section styling*/
-  footer.boxed-section {
-    background: transparent;
-    color: var(--brown);
-    padding: 2rem;
+  /* Certificate cards grid */
+  .cert-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .cert-card {
+    background: var(--card-bg);
+    padding: 1rem;
     border-radius: 10px;
-    border: 2px solid var(--mustard);
-    max-width: 1200px;
+    box-shadow: 0 0 10px var(--card-shadow-color);
+    text-align: center;
+    max-width: 250px;
+    width: 100%;
+    transition: transform 0.22s cubic-bezier(0.4,0.2,0.2,1), box-shadow 0.22s;
+    margin-bottom: 0.2rem;
+  }
+  .cert-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 22px var(--card-shadow-color);
+    z-index: 1;
+  }
+  .cert-card img {
+    max-height: 60px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+    width: auto;
+    display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 2rem;
-  } -->
-</div>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var coll = document.getElementsByClassName("collapsible");
-  for (var i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.parentElement.nextElementSibling;
-      if (content.classList.contains("visible")) {
-        content.classList.remove("visible");
-      } else {
-        content.classList.add("visible");
-      }
-    });
   }
-});
-</script>
-<style>
-/* Collapsible button styles */
-.collapsible {
-  background-color: transparent;
-  color: inherit;
-  cursor: pointer;
-  padding: 0;
-  border: none;
-  outline: none;
-  font-size: 1.1rem;
-  font-weight: 700;
-  transition: color 0.2s;
-  text-align: left;
+  .cert-card div {
+    font-weight: 600;
+    color: var(--link-color);
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+  }
+  .contact-icon {
+  font-size: 3rem;  /* bigger icons */
+  margin-right: 0.7rem;
+  color: var(--link-color);
+  transition: color 0.3s ease;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  color: var(--link-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-item:hover .contact-icon {
+  color: var(--link-hover-color);
 }
 </style>
-  <!-- #blogs .timeline-item {
-    max-width: 600px !important;
-    font-size: 0.95rem !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+</head>
+<body>
+  <canvas id="binaryCanvas"></canvas>
+  <header>
+    <img src="image.JPG" alt="Dharma Tejaswini Janga" class="profile-image" />
+    <h1>Dharma Tejaswini Janga</h1>
+    <div class="logo-container">
+      <img src="UGA.png" alt="UGA Logo" class="edu-logo" />
+      <img src="SRM.png" alt="SRM Logo" class="edu-logo  srm" />
+    </div>
+    <p id="cyber-text">In pursuit of securing tomorrow, today.</p>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2 data-final="😄 About Me">***********</h2>
+      <p>
+        Hello!👋 I'm Dharma, a graduate student pursuing my Master’s in Cybersecurity at the University of Georgia. I am passionate about threat intelligence, malware analysis, and AI in cybersecurity. I enjoy hands-on labs and Capture The Flag competitions to sharpen my skills.<br><br>
+
+        Outside of academics, I love baking, running, and spending time with friends and family. My goal is to become a skilled SOC analyst, protecting organizations from cyber threats.
+      </p>
+      <p>
+        <a href="dharma_resume.pdf" target="_blank" rel="noopener" style="color: var(--link-color); text-decoration: underline;">
+          View my Resume
+        </a>
+      </p>
+    </section>
+
+    <section id="projects">
+      <h2 data-final="👩‍💻 Projects">***************</h2>
+      <div class="projects">
+        <div class="card">
+          <h3>Real Time Phishing Simulator - TryHackMe</h3>
+          <p>Analyzed ransomware samples to create detection signatures.</p>
+          <a href="#" target="_blank" rel="noopener">View Details</a>
+        </div>
+        <div class="card">
+          <h3>SOC Analyst Tier 1 - Cyber Defenders</h3>
+          <p>Set up Wireshark and Splunk dashboards for real-time alerts.</p>
+          <a href="#" target="_blank" rel="noopener">View Details</a>
+        </div>
+        <div class="card">
+          <h3>Splunk dashboards</h3>
+          <p>Set up Wireshark and Splunk Dashboards for real-time alerts.</p>
+          <a href="#" target="_blank" rel="noopener">View Details</a>
+        </div>
+        
+    
+      </div>
+    </section>
+
+    <section id="certifications">
+      <h2 data-final="📜 Certifications">********************</h2>
+      <div class="featured-cert">
+        <img src="sec+.png" alt="CompTIA Security+ Logo" class="cert-logo" />
+        <h3>CompTIA Security+ Certified (2025)</h3>
+      </div>
+      <div class="other-certs-title">Other Certifications</div>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <img src="google.png" alt="Google Cybersecurity Certificate" />
+          <div style="font-weight: 600; color: var(--link-color); font-size: 1.2rem; margin-bottom: 0.2rem;">
+            Google Cybersecurity Certificate (2024)
+          </div>
+        </div>
+        <div class="cert-card">
+          <img src="msme.jpeg" alt="Google Cybersecurity Certificate" />
+          <div style="font-weight: 600; color: var(--link-color); font-size: 1.2rem; margin-bottom: 0.2rem;">
+            Digital Forensics and Cyber Law (2022)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blogs">
+      <h2 data-final="📝 Blogs">********</h2>
+      <div class="blogs">
+        <!-- <div class="card" data-content='
+          <h3>Hunting Threats with Splunk</h3>
+          <p>Step-by-step guide on setting up threat detection searches and dashboards in Splunk.</p>
+          <ul>
+            <li>Introduction to Splunk’s search processing language (SPL)</li>
+            <li>Creating detection rules for common attack patterns</li>
+            <li>Building real-time dashboards for SOC monitoring</li>
+            <li>Case study: Detecting brute force and suspicious login attempts</li>
+          </ul>
+        '>
+          <h3 class="blog-title" tabindex="0" style="cursor:pointer;">Hunting Threats with Splunk</h3>
+        </div>
+        
+        <div class="card" data-content='
+          <h3>OSINT for Cyber Investigations</h3>
+          <p>Using open-source intelligence to gather, verify, and analyze digital evidence.</p>
+          <ul>
+            <li>Introduction to OSINT tools and techniques</li>
+            <li>Gathering data from social media, domains, and public records</li>
+            <li>Correlating digital footprints for attribution</li>
+            <li>Ethical and legal considerations in OSINT</li>
+          </ul>
+        '>
+          <h3 class="blog-title" tabindex="0" style="cursor:pointer;">OSINT for Cyber Investigations</h3>
+        </div> -->
+        <!-- Georgia Cyber Center Trip Blog Card -->
+        <div class="card" data-content='
+          <h3>Road trip to the Georgia Cyber Center - Augusta on April 3, 2025</h3>
+          <div class="blog-images" style="margin-bottom: 1rem;">
+            <img src="b1.heic" alt="Georgia Cyber Center trip photo 1" style="max-width:100%;border-radius:8px;margin-bottom:0.5rem;">
+            <img src="blog2.jpeg" alt="Georgia Cyber Center trip photo 2" style="max-width:100%;border-radius:8px;">
+          </div>
+          <p>
+            On April 3, 2025, I had the incredible opportunity to visit the Georgia Cyber Center in Augusta with my cybersecurity cohort. The day began with an early morning road trip filled with anticipation and excitement. Upon arrival, we were greeted by the impressive architecture of the facility, which is renowned for fostering collaboration among government, academia, and industry.
+          </p>
+          <p>
+            Our group participated in a guided tour that showcased the state-of-the-art labs, training classrooms, and collaborative spaces designed for hands-on cyber defense exercises. We attended a panel discussion with cybersecurity professionals who shared valuable insights about current threat landscapes and the skills most in demand in the industry. I was especially inspired by their passion for continuous learning and their commitment to making cyberspace safer.
+          </p>
+          <p>
+            The highlight of the trip was a live demonstration of incident response in the center’s advanced simulation room. Watching experts respond to a simulated cyberattack in real-time deepened my understanding of teamwork, communication, and technical agility required in high-pressure scenarios.
+          </p>
+          <p>
+            Beyond the technical takeaways, the trip was a fantastic chance to bond with colleagues and network with professionals. I left the Georgia Cyber Center feeling motivated and more determined than ever to pursue a career in cybersecurity.
+          </p>
+        '>
+          <h3 class="blog-title" tabindex="0" style="cursor:pointer;">Road trip to the Georgia Cyber Center - Augusta on April 3, 2025</h3>
+        </div>
+        <!-- End Georgia Cyber Center Trip Blog Card -->
+      </div>
+    </section>
+
+    <section id="writeups">
+      <h2 data-final="✍️ Write-ups">************</h2>
+      <div class="writeups">
+        <div class="card">
+          <h3><a href="https://www.notion.so/Cyber-Defenders-Grab-the-Phisher-Lab-Write-up-24f73ecc666580eda0e7e48a68ad479a?source=copy_link" target="_blank" rel="noopener">CyberDefenders Grab the Phisher Lab</a></h3>
+          <p>Conducting threat intelligence analysis on the phishing infrastructure, identify indicators of compromise and understand the attacker's tactics, techniques and procedures (TTP).</p>
+        </div>
+        <div class="card">
+          <h3><a href="#" target="_blank" rel="noopener">OSINT Case Study</a></h3>
+          <p>Open-source intelligence techniques applied to a missing person case.</p>
+        </div>
+      </div>
+    </section>
+    <section id="contact" style="position: relative; overflow: hidden;">
+  <canvas id="contactCanvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;"></canvas>
+  <div class="contact-card" style="position: relative; z-index: 1;">
+    <div class="contact-items-container">
+      <a href="mailto:dharmatejaswinijanga@gmail.com" class="contact-item">
+        <i class="fas fa-envelope contact-icon"></i>Email
+      </a>
+      <a href="https://linkedin.com/in/dharma-janga" target="_blank" rel="noopener" class="contact-item">
+        <i class="fab fa-linkedin contact-icon"></i>LinkedIn
+      </a>
+      <a href="https://github.com/dharma-ghub" target="_blank" rel="noopener" class="contact-item">
+        <i class="fab fa-github contact-icon"></i>GitHub
+      </a>
+    </div>
+  </div>
+</section>
+      </style>
+      
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2025 Dharma Tejaswini Janga. All rights reserved.
+  </footer>
+<script>
+  const targetText = "In pursuit of securing tomorrow, today.";
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+[]{}|;:',.<>?";
+  const el = document.getElementById("cyber-text");
+  const speed = 8; // milliseconds per letter scramble
+  let currentIndex = 0;
+  let iteration = 0;
+  const maxIterations = 5; // how many random characters before final letter
+
+  function randomChar() {
+    return chars.charAt(Math.floor(Math.random() * chars.length));
   }
 
-  #blogs .blog-images img {
-    width: 45% !important;
-  } -->
+  function animate() {
+    if (currentIndex >= targetText.length) return;
+    let displayed = targetText.slice(0, currentIndex);
+    if (iteration < maxIterations) {
+      displayed += randomChar();
+      iteration++;
+    } else {
+      displayed += targetText.charAt(currentIndex);
+      currentIndex++;
+      iteration = 0;
+    }
+    el.textContent = displayed;
+    setTimeout(animate, speed);
+  }
+
+  animate();
+</script>
+<script>
+  function binaryMaskText(element, finalText) {
+    const length = finalText.length;
+    let displayed = Array(length).fill(null);
+    let currentIndex = 0;
+    const binaryChars = ['0', '1'];
+    const scrambleSpeed = 85;
+
+    function randomBinaryChar() {
+      return binaryChars[Math.floor(Math.random() * binaryChars.length)];
+    }
+
+    // Initialize with random binary string
+    for (let i = 0; i < length; i++) {
+      displayed[i] = randomBinaryChar();
+    }
+    element.textContent = displayed.join('');
+
+    function step() {
+      if (currentIndex >= length) {
+        element.textContent = finalText;
+        return;
+      }
+      for (let i = currentIndex; i < length; i++) {
+        displayed[i] = randomBinaryChar();
+      }
+      for (let i = 0; i < currentIndex; i++) {
+        displayed[i] = finalText.charAt(i);
+      }
+      element.textContent = displayed.join('');
+      currentIndex++;
+      setTimeout(step, scrambleSpeed);
+    }
+    step();
+  }
+
+  const sections = document.querySelectorAll('section');
+
+  const observerOptions = {
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        const h2 = entry.target.querySelector('h2');
+        if (h2 && h2.dataset.final) {
+          binaryMaskText(h2, h2.dataset.final);
+        }
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => {
+    observer.observe(section);
+  });
+</script>
+
+  <!-- Blog Modal Structure -->
+  <div id="blog-modal-overlay" style="display:none;">
+    <div id="blog-modal-box">
+      <button id="blog-modal-close" aria-label="Close blog modal">&times;</button>
+      <div id="blog-modal-content"></div>
+    </div>
+  </div>
+<style>
+#blog-modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.75);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+#blog-modal-box {
+  background: #171717;
+  color: #e0e0e0;
+  max-width: 800px;
+  width: 90vw;
+  max-height: 80vh;
+  border-radius: 14px;
+  box-shadow: 0 0 30px #00c2cb;
+  padding: 2rem 2rem 1.5rem 2rem;
+  position: relative;
+  overflow-y: auto;
+  font-size: 1.1rem;
+  /* Animation initial state */
+  transform: translateY(30px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+#blog-modal-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 1.1rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #66e0e6;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s;
+}
+#blog-modal-close:hover {
+  color: #00c2cb;
+}
+#blog-modal-content img {
+  max-width: 45% !important;
+  border-radius: 8px;
+  margin: 0 auto 0.5rem auto;
+  /* display: block; */
+}
+</style>
+<script>
+// Blog Modal Logic
+document.addEventListener('DOMContentLoaded', function() {
+  function showModal(html) {
+    const overlay = document.getElementById('blog-modal-overlay');
+    const content = document.getElementById('blog-modal-content');
+    content.innerHTML = html;
+    overlay.style.display = 'flex';
+    // Animate modal box in
+    const box = document.getElementById('blog-modal-box');
+    box.style.transform = 'translateY(0)';
+    box.style.opacity = '1';
+    setTimeout(() => { overlay.style.opacity = '1'; }, 10);
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    const overlay = document.getElementById('blog-modal-overlay');
+    const box = document.getElementById('blog-modal-box');
+    // Animate modal box out
+    box.style.transform = 'translateY(30px)';
+    box.style.opacity = '0';
+    overlay.style.opacity = '0';
+    setTimeout(() => { overlay.style.display = 'none'; }, 220);
+    document.body.style.overflow = '';
+    document.getElementById('blog-modal-content').innerHTML = '';
+  }
+  // Listen for clicks on blog titles
+  document.querySelectorAll('#blogs .card .blog-title').forEach(function(h3) {
+    h3.addEventListener('click', function(e) {
+      const card = h3.closest('.card');
+      if (card && card.dataset.content) {
+        showModal(card.dataset.content);
+      }
+    });
+    h3.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        h3.click();
+      }
+    });
+  });
+  // Close modal on close button
+  document.getElementById('blog-modal-close').addEventListener('click', closeModal);
+  // Close modal when clicking outside the modal box
+  document.getElementById('blog-modal-overlay').addEventListener('mousedown', function(e) {
+    if (e.target === this) closeModal();
+  });
+  // Esc key closes modal
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('blog-modal-overlay').style.display !== 'none') {
+      closeModal();
+    }
+  });
+});
+</script>
+<script>
+// Automatically make all external links open in a new tab
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('a[href^="http"]').forEach(function(link) {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener');
+  });
+});
+</script>
+</body>
+<script>
+(function () {
+  const canvas = document.getElementById('binaryCanvas');
+  const ctx = canvas.getContext('2d');
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+
+  const fontSize = 20;
+  let columns = Math.floor(width / fontSize);
+  const binaryChars = ['0', '1'];
+  let drops = new Array(columns).fill(0);
+
+  function draw() {
+    // Fade effect for trailing
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.fillStyle = 'rgba(0, 194, 203, 0.6)';
+    ctx.font = fontSize + 'px monospace';
+
+    for (let i = 0; i < columns; i++) {
+      const text = binaryChars[Math.floor(Math.random() * binaryChars.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+      if (drops[i] * fontSize > height && Math.random() > 0.975) {
+        drops[i] = 0;
+      }
+      drops[i]++;
+    }
+  }
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    columns = Math.floor(width / fontSize);
+    drops = new Array(columns).fill(0);
+  }
+
+  window.addEventListener('resize', resize);
+
+  setInterval(draw, 50);
+})();
+</script>
+</html>
